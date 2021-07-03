@@ -422,7 +422,7 @@ impl Tab {
         Ok(self)
     }
 
-    pub fn is_navigated(&self) -> Fallible<&Self> {
+    pub fn is_navigated(&self) -> Fallible<bool> {
         let navigating = Arc::clone(&self.navigating);
    
         if navigating.load(Ordering::SeqCst) {
