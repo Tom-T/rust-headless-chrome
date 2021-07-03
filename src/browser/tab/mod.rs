@@ -426,14 +426,11 @@ impl Tab {
         let navigating = Arc::clone(&self.navigating);
    
         if navigating.load(Ordering::SeqCst) {
-            Some(false)
+            Ok(false)
         } else {
-            Some(true)
+            debug!("A tab finished navigating");
+            Ok(true)
         }
-        
-        debug!("A tab finished navigating");
-
-        Ok(self)
     }
 
     pub fn navigate_to(&self, url: &str) -> Fallible<&Self> {
